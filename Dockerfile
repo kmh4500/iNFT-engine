@@ -8,7 +8,7 @@ ENV FLASK_ENV=production
 COPY models /app/models
 COPY . /app
 WORKDIR /app
-RUN python load-model.py
+RUN python load-model.py || true
 
 CMD ["python", "main.py"]
 
