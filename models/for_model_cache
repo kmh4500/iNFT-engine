@@ -1,0 +1,3 @@
+This is a directory for caching transformer models.
+This directory is ignored by .gitignore.
+It is useful when you build docker image locally.
