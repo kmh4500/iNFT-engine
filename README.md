@@ -1,4 +1,4 @@
-# Building a iNFT engine with AI Network
+# Building a iNFT (intelligence NFT) engine with AI Network
 This repository contains the code for the following Medium blogs:
 - [How to build a iNFT with AI Network](https://ainetwork.ai)
 
