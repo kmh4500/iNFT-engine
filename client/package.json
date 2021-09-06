@@ -6,7 +6,8 @@
     "dev": "next dev",
     "build": "next build",
     "start": "next start",
-    "debug": "node --inspect-brk ./node_modules/next/dist/bin/next"
+    "debug": "node --inspect-brk ./node_modules/next/dist/bin/next",
+    "test": "mocha -r esm --exit test/*.test.js"
   },
   "dependencies": {
     "@ainblockchain/ain-js": "^1.1.5",
@@ -15,5 +16,9 @@
     "react": "16.13.1",
     "react-dom": "16.13.1",
     "swr": "^0.5.6"
+  },
+  "devDependencies": {
+    "chai": "^4.3.4",
+    "esm": "^3.2.25"
   }
 }

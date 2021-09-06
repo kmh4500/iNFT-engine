@@ -26,8 +26,22 @@ function getMessage(time) {
   return ain.db.ref(CHAT_DB_PATH + '/' + time).getValue()
 }
 
+
+function sendResponse(ref, message) {
+  return ain.db.ref(ref + '/response').setValue({
+    value: message,
+    nonce: -1,
+  })
+}
+
+function getResponse(ref) {
+  return ain.db.ref(ref + '/response').getValue()
+}
+
 module.exports = {
   getHistory,
   sendChat,
-  getMessage
+  getMessage,
+  sendResponse,
+  getResponse
 };
