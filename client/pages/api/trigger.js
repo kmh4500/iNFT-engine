@@ -14,7 +14,9 @@ export default async function handler(req, res) {
   console.log('[transaction]', message)
   let ref = message.tx_body.operation.ref
   let value = message.tx_body.operation.value
-  if (ref && value) {
+  console.log('[ref]', ref)
+  console.log('[value]', value)
+  if (ref && value && !value.response) {
     if (!visit[ref]) {
       visit[ref] = true
 
@@ -29,6 +31,7 @@ export default async function handler(req, res) {
         console.log('[previous response]', result)
         if (!result) {
           let response = await engine.complete(channel, context, value.message)
+          console.log('[ref]', ref)
           console.log('[response]', response.data)
           if (response && response.data) {
             ainClient.sendResponse(ref, response.data)

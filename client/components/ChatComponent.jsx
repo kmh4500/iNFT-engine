@@ -24,7 +24,7 @@ const ChatComponent = () => {
     setMessageText("");
     fetch(`/api/sendChat?user=kmh&message=${messageText}&time=${time}`).then(() => {
       var getMessage = () => {
-        fetch(`/api/getMessage?time=${time}`).then((result) => result.json()).then((data) => {
+        fetch(`/api/getMessage?user=kmh&time=${time}`).then((result) => result.json()).then((data) => {
           console.log("data", data)
           if (data.response) {
             console.log("response", data.response)

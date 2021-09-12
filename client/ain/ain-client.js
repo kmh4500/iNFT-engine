@@ -11,19 +11,19 @@ console.log(myAddress)
 // Print defaultAccount (Need to backup your private key)
 console.log(ain.wallet.defaultAccount);
 
-function getHistory() {
-  return ain.db.ref(CHAT_DB_PATH).getValue()
+function getHistory(user) {
+  return ain.db.ref(CHAT_DB_PATH + '/' + user).getValue()
 }
 
 function sendChat(user, message, time) {
-  return ain.db.ref(CHAT_DB_PATH + '/' + time).setValue({
-    value: {user: user, message: message},
+  return ain.db.ref(CHAT_DB_PATH + '/' + user + '/' + time).setValue({
+    value: {message: message},
     nonce: -1
   })
 }
 
-function getMessage(time) {
-  return ain.db.ref(CHAT_DB_PATH + '/' + time).getValue()
+function getMessage(user, time) {
+  return ain.db.ref(CHAT_DB_PATH + '/' + user + '/' + time).getValue()
 }
 
 

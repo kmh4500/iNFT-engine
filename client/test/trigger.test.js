@@ -3,6 +3,7 @@
 
 const { expect } = require("chai");
 import handler from "../pages/api/trigger"
+
 describe("trigger tests", () => {
   after(() => {
   });
@@ -13,8 +14,8 @@ describe("trigger tests", () => {
         transaction: {
           tx_body: {
             operation: {
-              ref: 'apps/chat/ainetwork/0xuser/123',
-              value: {user: 'minhyun', message: 'What is the greatest novel in the history?'}
+              ref: 'apps/chat/ainetwork/0xtestuser/' + Date.now(),
+              value: {message: 'What is the greatest novel in the history?'}
             }
           }
         }
@@ -34,14 +35,14 @@ describe("trigger tests", () => {
   }).timeout(10000);
 
 
-  it("test don't answer my message", async () => {
+  it("test don't answer message with response", async () => {
     let req = {
       query: {
         transaction: {
           tx_body: {
             operation: {
-              ref: 'apps/chat/ainetwork/0xuser/123',
-              value: {user: 'AIN', message: 'What is the greatest novel in the history?'}
+              ref: 'apps/chat/ainetwork/0xtestuser/' + Date.now(),
+              value: {message: 'What is the greatest novel in the history?', response: 'hi'}
             }
           }
         }
