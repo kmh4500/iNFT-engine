@@ -14,6 +14,7 @@ from flask_caching import Cache
 from requests import get
 import os
 import re
+import logging
 
 os.environ['TORCH_HOME'] = 'models'
 
@@ -29,7 +30,8 @@ app = Flask(__name__)
 app.config.from_mapping(config)
 cache = Cache(app)
 
-print("model loading...")
+logging.basicConfig(filename='main.log', filemode='w', level=logging.DEBUG) 
+logging.info("model loading...")
 
 # Model & Tokenizer loading
 
@@ -54,7 +56,7 @@ def load_faiss_index(model, data):
     # Check if GPU is available and use it
     if torch.cuda.is_available():
         model = model.to(torch.device("cuda"))
-    print(model.device)
+    logging.info(model.device)
     embeddings = model.encode(data, show_progress_bar=True)
     # Step 1: Change data type
     embeddings = np.array([embedding for embedding in embeddings]).astype("float32")
@@ -65,7 +67,7 @@ def load_faiss_index(model, data):
     # Step 4: Add vectors and their IDs
     ids = np.array(list(range(0, len(data))))
     index.add_with_ids(embeddings, ids)
-    print(f"Number of vectors in the Faiss index: {index.ntotal}")
+    logging.info(f"Number of vectors in the Faiss index: {index.ntotal}")
 
     return index
 
@@ -82,7 +84,7 @@ def generate_text(model, tokenizer, sequence, max_length):
         length_penalty=2.0
     )
     result = tokenizer.decode(final_outputs[:, ids.shape[-1]:][0], skip_special_tokens=True)
-    print (result)
+    logging.info(result)
     result = result[:result.find("User:")]
     return result.strip()
 
@@ -94,13 +96,13 @@ tokenizer = load_gpt2_tokenizer()
 faiss_dict = {}
 data_dict = {}
 
-print("complete model loading")
+logging.info("complete model loading")
 
 @app.route('/build/<channel>', methods=['POST'])
 def build(channel):
-    data = request.form.get('data')
-    print (channel)
-    print (data)
+    data = request.json['data']
+    logging.info(channel)
+    logging.info(data)
     if not channel or not data:
         return 'please provide channel and data', 200
     data_list = data.split(',')
@@ -110,7 +112,7 @@ def build(channel):
         # ignore too big file, invalid files
         if response and response.content and len(response.content) < 1000000:
             lines += response.content.decode('utf-8').splitlines()
-    print (lines)
+    logging.info(lines)
     if lines:
         faiss_dict[channel] = load_faiss_index(model, lines)
         data_dict[channel] = lines
@@ -138,8 +140,6 @@ def generate():
     if channel and channel in faiss_dict:
         faiss_index = faiss_dict[channel]
         data = data_dict[channel]
-    else:
-        return 'invalid channel', 500
     num_results = 3
     # Fetch results
     if user_input:
@@ -153,7 +153,7 @@ def generate():
             else:
                 memories.append(data[i])
         # Get individual results
-        print (memories)
+        logging.info(memories)
         prompt = (
                 f"The following is a conversation between User and {name}\n"
                 f"{context}\n"
@@ -168,16 +168,16 @@ def generate():
                 f"User: {user_input}\n"
                 f"{name}:"
                 )
-        print (prompt)
+        logging.info(prompt)
         if lock.locked():
             results = memories[0].replace("User:", "").replace(f"{name}:", "").strip() 
-            print (results)
+            logging.info(results)
             return results
         lock.acquire()
         results = generate_text(gpt2model, tokenizer, prompt, 400)
         results = results.replace(f"{name}:", "")
         lock.release()
-        print (results)
+        logging.info(results)
         return results, 200
 
 ##

@@ -12,6 +12,7 @@
   "dependencies": {
     "@ainblockchain/ain-js": "^1.1.5",
     "@ainblockchain/ain-util": "^1.1.6",
+    "express": "^4.17.1",
     "next": "^10.0.0",
     "react": "16.13.1",
     "react-dom": "16.13.1",
