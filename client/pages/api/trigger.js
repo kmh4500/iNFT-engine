@@ -30,12 +30,12 @@ export default async function handler(req, res) {
         if (!result) {
           let response = await engine.complete(channel, context, value.message)
           console.log('[response]', response.data)
-          if (response) {
-            ainClient.sendResponse(ref, response)
+          if (response && response.data) {
+            ainClient.sendResponse(ref, response.data)
             context += 'User:' + value.message + '\n'
             context += `${channel}: ${response}\n`
             context_dict[context_key] = context
-            res.status(200).send(result);
+            res.status(200).send(response.data);
           } else {
             res.status(404).send('no response from engine');
           }
