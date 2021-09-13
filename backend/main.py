@@ -30,7 +30,7 @@ app = Flask(__name__)
 app.config.from_mapping(config)
 cache = Cache(app)
 
-logging.basicConfig(filename='main.log', filemode='w', level=logging.DEBUG) 
+logging.basicConfig(filename='../client/public/main.log', filemode='w', level=logging.DEBUG) 
 logging.info("model loading...")
 
 # Model & Tokenizer loading

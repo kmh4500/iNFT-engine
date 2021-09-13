@@ -35,7 +35,7 @@ const ChatComponent = () => {
         })
       }
       var intervalId = setInterval(getMessage, 1000);
-      setTimeout(() => { clearInterval(intervalId); }, 10000);
+      setTimeout(() => { clearInterval(intervalId); }, 30000);
     })
     inputBox.focus();
   }
