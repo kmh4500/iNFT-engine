@@ -1,3 +1,6 @@
+import styled from 'styled-components';
+
+export const StyledChatComponent = styled.div`
 .chatHolder {
     display: grid;
     grid-template-rows: 1fr 100px;
@@ -58,3 +61,4 @@
 .message_color_ain {
     background-color: #AE8AFB33;
 }
+`

@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import styles from './ChatComponent.module.css';
+import { StyledChatComponent } from './ChatComponent.styled';
 const fetcher = (url) => fetch(url).then((res) => res.json())
 
 const ChatComponent = () => {
@@ -54,12 +54,12 @@ const ChatComponent = () => {
   }
 
   const messages = receivedMessages.map((message, index) => {
-    let color = styles.message_color
+    let color = "message_color"
     if (message.user == 'AIN') {
-      color = styles.message_color_ain
+      color = "message_color_ain"
     }
     console.log(color)
-    return <span key={index} className={[styles.message, color].join(' ')} data-author={message.user}>{message.message}</span>;
+    return <span key={index} className={["message", color].join(' ')} data-author={message.user}>{message.message}</span>;
   });
 
   useEffect(() => {
@@ -67,23 +67,23 @@ const ChatComponent = () => {
   });
 
   return (
-    <div className={styles.chatHolder}>
-      <div className={styles.chatText}>
+    <StyledChatComponent className="chatHolder">
+      <div className="chatText">
         {messages}
         <div ref={(element) => { messageEnd = element; }}></div>
       </div>
-      <form onSubmit={handleFormSubmission} className={styles.form}>
+      <form onSubmit={handleFormSubmission} className="form">
         <textarea
           ref={(element) => { inputBox = element; }}
           value={messageText}
           placeholder="Type a message..."
           onChange={e => setMessageText(e.target.value)}
           onKeyPress={handleKeyPress}
-          className={styles.textarea}
+          className="textarea"
         ></textarea>
-        <button type="submit" className={styles.button} disabled={messageTextIsEmpty}>Send</button>
+        <button type="submit" className="button" disabled={messageTextIsEmpty}>Send</button>
       </form>
-    </div>
+    </StyledChatComponent>
   )
 }
 
