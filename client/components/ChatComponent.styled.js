@@ -23,10 +23,16 @@ export const StyledChatComponent = styled.div`
 }
 
 .textarea {
-    padding: 1em;
-    border: 0;
-    font-family: -apple-system,BlinkMacSystemFont,Segoe UI,Roboto, Oxygen,Ubuntu,Cantarell,Fira Sans,Droid Sans,Helvetica Neue, sans-serif;
+    justify-content: space-between;
+    align-items: center;
+    padding: 8px 12px;
     font-size: 1.2em;
+    /* grayscale/ainize gray 4 */
+    width: 320px;
+    height: 50px;
+    border: 2px solid #ECECF3;
+    box-sizing: border-box;
+    border-radius: 10px;
 }
 
 .button {
