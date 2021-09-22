@@ -4,6 +4,7 @@ export const StyledChatComponent = styled.div`
 .chatHolder {
     display: grid;
     grid-template-rows: 1fr 100px;
+    width: 360px;
 }
 
 .chatText {
@@ -17,34 +18,36 @@ export const StyledChatComponent = styled.div`
 }
 
 .form {
-    display: grid;
-    grid-template-columns: 1fr 100px;
-    border-top: 1px solid #eee;
+    position: relative;
+    width: 100%;
 }
 
 .textarea {
-    justify-content: space-between;
-    align-items: center;
     padding: 8px 12px;
     font-size: 1.2em;
-    /* grayscale/ainize gray 4 */
-    width: 320px;
-    height: 50px;
-    border: 2px solid #ECECF3;
+    width: 100%;
+    height: 100%;
     box-sizing: border-box;
+    /* grayscale/ainize gray 4 */
+    border: 2px solid #ECECF3;
     border-radius: 10px;
 }
 
 .button {
+   position: absolute;
+   background-color: #ffffff;
+    top: 0;
+    right: 0;
+    margin-right: 20px;
+    margin-top: 13px;
     border: 0;
-    height: 20px;
-    width: 20px;
+    height: 30px;
+    width: 30px;
 }
 
 .button img {
-    border: 0;
-    height: 20px;
-    width: 20px;
+    height: 30px;
+    width: 30px;
 }
 .button:hover {
 }

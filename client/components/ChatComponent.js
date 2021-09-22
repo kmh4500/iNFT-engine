@@ -73,18 +73,17 @@ const ChatComponent = () => {
         <div ref={(element) => { messageEnd = element; }}></div>
       </div>
       <form onSubmit={handleFormSubmission} className="form">
-        <textarea
-          ref={(element) => { inputBox = element; }}
-          value={messageText}
-          placeholder="Type a message..."
-          onChange={e => setMessageText(e.target.value)}
-          onKeyPress={handleKeyPress}
-          className="textarea"
-        ></textarea>
-        <button type="submit" className="button" disabled={messageTextIsEmpty}>
-          <img src="/send.svg" aria-hidden="true" />
-        </button>
-
+          <textarea
+            ref={(element) => { inputBox = element; }}
+            value={messageText}
+            placeholder="Type a message..."
+            onChange={e => setMessageText(e.target.value)}
+            onKeyPress={handleKeyPress}
+            className="textarea"
+          ></textarea>
+          <button type="submit" className="button" disabled={messageTextIsEmpty}>
+            <img src="/send.svg" aria-hidden="true" />
+          </button>
       </form>
     </StyledChatComponent>
   )
