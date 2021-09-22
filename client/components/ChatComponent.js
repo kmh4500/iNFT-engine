@@ -81,7 +81,10 @@ const ChatComponent = () => {
           onKeyPress={handleKeyPress}
           className="textarea"
         ></textarea>
-        <button type="submit" className="button" disabled={messageTextIsEmpty}>Send</button>
+        <button type="submit" className="button" disabled={messageTextIsEmpty}>
+          <img src="/send.svg" aria-hidden="true" />
+        </button>
+
       </form>
     </StyledChatComponent>
   )

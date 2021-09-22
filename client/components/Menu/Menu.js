@@ -9,7 +9,7 @@ const Menu = ({ open, ...props }) => {
 
   return (
     <StyledMenu open={open} aria-hidden={!isHidden} {...props}>
-      <a primary href="/" tabIndex={tabIndex}>
+      <a href="/" tabIndex={tabIndex}>
         Personas
       </a>
       <a className="secondary" href="/chat/ain" tabIndex={tabIndex}>
@@ -18,10 +18,10 @@ const Menu = ({ open, ...props }) => {
       <a className="secondary" href="/chat/elon" tabIndex={tabIndex}>
         Elon Musk
       </a>
-      <a primary href="/build" tabIndex={tabIndex}>
+      <a href="/build" tabIndex={tabIndex}>
         Build
       </a>
-      <a primary href="/about" tabIndex={tabIndex}>
+      <a href="/about" tabIndex={tabIndex}>
         About
       </a>
     </StyledMenu>

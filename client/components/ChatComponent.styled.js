@@ -31,19 +31,20 @@ export const StyledChatComponent = styled.div`
 
 .button {
     border: 0;
-    color: white;
-    font-weight: bold;
-    font-size: 1.4em;
-    background: linear-gradient(to right, #363795, #005C97);
+    height: 20px;
+    width: 20px;
 }
 
+.button img {
+    border: 0;
+    height: 20px;
+    width: 20px;
+}
 .button:hover {
-    background: linear-gradient(90deg, rgba(54,55,149,1) 0%, rgba(0,92,151,1) 62%, rgba(0,125,205,1) 100%);
 }
 
 .button:disabled,
 .button:hover:disabled {
-    background: linear-gradient(to right, #363795, #005C97);
     opacity: 0.5;
 }
 
