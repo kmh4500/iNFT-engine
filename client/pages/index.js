@@ -5,7 +5,7 @@ import ChatHome from "../components/ChatHome"
 const PageOne = props => {
   return (
     <Layout>
-      <ChatHome />
+      <ChatHome name="AIN" />
     </Layout>
   )
 }

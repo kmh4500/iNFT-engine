@@ -2,13 +2,18 @@ import React, { useEffect, useState } from 'react';
 import { StyledChatComponent } from './ChatComponent.styled';
 const fetcher = (url) => fetch(url).then((res) => res.json())
 
-const ChatComponent = () => {
+const ChatComponent = ({name}) => {
 
   let inputBox = null;
   let messageEnd = null;
 
+  console.log(name)
+  if (!name) {
+    name = 'AIN'
+    console.log('name undefined. use default name AIN')
+  }
   const [messageText, setMessageText] = useState("");
-  const [receivedMessages, setMessages] = useState([{user: "AIN", message: "Hi, my name is AIN. How may I help you?"}]);
+  const [receivedMessages, setMessages] = useState([{user: "AIN", message: `Hi, my name is ${name}. How may I help you?`}]);
   const messageTextIsEmpty = messageText.trim().length === 0;
 /*
   const { historyMessages, error } = useSwr('/api/getHistory', fetcher)
@@ -22,13 +27,13 @@ const ChatComponent = () => {
     receivedMessages.push({user: "you", message: messageText})
     setMessages([...receivedMessages])
     setMessageText("");
-    fetch(`/api/sendChat?user=kmh&message=${messageText}&time=${time}`).then(() => {
+    fetch(`/api/sendChat?name=${name}&user=kmh&message=${messageText}&time=${time}`).then(() => {
       var getMessage = () => {
-        fetch(`/api/getMessage?user=kmh&time=${time}`).then((result) => result.json()).then((data) => {
+        fetch(`/api/getMessage?name=${name}&user=kmh&time=${time}`).then((result) => result.json()).then((data) => {
           console.log("data", data)
           if (data.response) {
             console.log("response", data.response)
-            receivedMessages.push({user: "AIN", message: data.response})
+            receivedMessages.push({user: name, message: data.response})
             setMessages([...receivedMessages])
             clearInterval(intervalId);
           }
@@ -55,7 +60,7 @@ const ChatComponent = () => {
 
   const messages = receivedMessages.map((message, index) => {
     let color = "message_color"
-    if (message.user == 'AIN') {
+    if (message.user == name) {
       color = "message_color_ain"
     }
     console.log(color)
