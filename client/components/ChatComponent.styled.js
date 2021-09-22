@@ -11,6 +11,7 @@ export const StyledChatComponent = styled.div`
     display: flex;
     flex-direction: column;
     align-items: flex-start;
+    max-width: 360px;
     gap: 1em;
     padding: 1em;
     height: calc(100vh - 40px - 100px - 100px - 100px);
@@ -23,7 +24,7 @@ export const StyledChatComponent = styled.div`
 }
 
 .textarea {
-    padding: 8px 12px;
+    padding: 8px 48px 8px 12px;
     font-size: 1.2em;
     width: 100%;
     height: 100%;
@@ -62,6 +63,7 @@ export const StyledChatComponent = styled.div`
     border-radius: 10px;
     flex-grow: 0;
     border-bottom-left-radius: 0;
+    word-break: break-word;
 }
 
 .message_color {
