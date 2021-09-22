@@ -20,6 +20,7 @@ export const StyledChatComponent = styled.div`
 
 .form {
     position: relative;
+    z-index: 0;
     width: 100%;
 }
 

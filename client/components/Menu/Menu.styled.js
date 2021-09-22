@@ -2,6 +2,7 @@ import styled from 'styled-components';
 
 export const StyledMenu = styled.nav`
   display: flex;
+  z-index: 1;
   flex-direction: column;
   justify-content: center;
   background: ${({ theme }) => theme.primaryLight};
