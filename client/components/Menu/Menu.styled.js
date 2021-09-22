@@ -9,7 +9,7 @@ export const StyledMenu = styled.nav`
   transform: ${({ open }) => open ? 'translateX(0)' : 'translateX(-100%)'};
   height: 100vh;
   text-align: left;
-  padding: 2rem;
+  padding: 1rem;
   position: absolute;
   top: 0;
   left: 0;
@@ -20,17 +20,16 @@ export const StyledMenu = styled.nav`
     }
 
   a {
-    font-size: 2rem;
-    text-transform: uppercase;
+    font-size: 1.2rem;
     padding: 2rem 0;
     font-weight: bold;
-    letter-spacing: 0.5rem;
+    letter-spacing: 0.2rem;
     color: ${({ theme }) => theme.primaryDark};
     text-decoration: none;
     transition: color 0.3s linear;
 
     @media (max-width: ${({ theme }) => theme.mobile}) {
-      font-size: 1.5rem;
+      font-size: 1.2rem;
       text-align: center;
     }
 
@@ -40,7 +39,7 @@ export const StyledMenu = styled.nav`
   }
 
   a.secondary {
-    font-size: 1.5rem;
-    padding: 1rem 1rem;
+    font-size: 1rem;
+    padding: 1rem 0.5rem;
   }
 `;

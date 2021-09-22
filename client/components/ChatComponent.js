@@ -13,7 +13,9 @@ const ChatComponent = ({name}) => {
     console.log('name undefined. use default name AIN')
   }
   const [messageText, setMessageText] = useState("");
-  const [receivedMessages, setMessages] = useState([{user: "AIN", message: `Hi, my name is ${name}. How may I help you?`}]);
+  const [receivedMessages, setMessages] = useState(
+    [{user: name,
+      message: `Hi, my name is ${name}. How may I help you?`}]);
   const messageTextIsEmpty = messageText.trim().length === 0;
 /*
   const { historyMessages, error } = useSwr('/api/getHistory', fetcher)
@@ -24,8 +26,8 @@ const ChatComponent = ({name}) => {
   const sendChatMessage = (messageText) => {
     var time = Date.now()
     console.log(time)
-    receivedMessages.push({user: "you", message: messageText})
-    setMessages([...receivedMessages])
+    let newMessage = {user: "you", message: messageText}
+    setMessages(previousState => [...previousState, newMessage])
     setMessageText("");
     fetch(`/api/sendChat?name=${name}&user=kmh&message=${messageText}&time=${time}`).then(() => {
       var getMessage = () => {
@@ -33,8 +35,8 @@ const ChatComponent = ({name}) => {
           console.log("data", data)
           if (data.response) {
             console.log("response", data.response)
-            receivedMessages.push({user: name, message: data.response})
-            setMessages([...receivedMessages])
+            let response = {user: name, message: data.response}
+            setMessages(previousState => [...previousState, response])
             clearInterval(intervalId);
           }
         })

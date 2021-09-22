@@ -65,6 +65,7 @@ export const StyledChatComponent = styled.div`
     flex-grow: 0;
     border-bottom-left-radius: 0;
     word-break: break-word;
+    text-align: left;
 }
 
 .message_color {
