@@ -41,6 +41,11 @@ function sendBuild(name, data) {
   })
 }
 
+function getBuild(name) {
+  return ain.db.ref(CHAT_DB_PATH + '/' + name + '/build')
+      .getValue()
+}
+
 function getResponse(ref) {
   return ain.db.ref(ref + '/response').getValue()
 }

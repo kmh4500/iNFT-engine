@@ -1,5 +1,6 @@
 /**
- * Responds to any HTTP request.
+ * Actually, this trigger is the part of the backend logic.
+ * This can be moved to the backend after ain-py is implemented.
  *
  * @param {!express:Request} req HTTP request context.
  * @param {!express:Response} res HTTP response context.
@@ -25,6 +26,10 @@ export default async function handler(req, res) {
       let user = path[path.length - 2];
       let channel = path[path.length - 3];
       const context_key = `${channel}/${user}`
+      if (context_dict[context_key] === null) {
+        build = await ainClient.getBuild(channel)
+        context_dict[context_key] = build.description
+      }
       let context = context_dict[context_key] || ''
 
       return ainClient.getResponse(ref).then(async (result) => {
@@ -37,6 +42,12 @@ export default async function handler(req, res) {
             ainClient.sendResponse(ref, response.data)
             context += 'User:' + value.message + '\n'
             context += `${channel}: ${response}\n`
+            const MAX_LEN = 500
+            if (context.length > MAX_LEN) {
+              context = context.substring(context.length - MAX_LEN, context.length);
+            }
+
+            console.log('context', context)
             context_dict[context_key] = context
             res.status(200).send(response.data);
           } else {
