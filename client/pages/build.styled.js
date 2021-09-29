@@ -4,9 +4,6 @@ export const Build = styled.div`
 font-family: Quicksand;
 font-style: normal;
   text-align: left;
-form {
-  margin-top: 230px;
-}
 
 textarea {
   width: 348px;
